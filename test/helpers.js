@@ -1,21 +1,22 @@
-const chai = require('chai')
-global.expect = chai.expect
-const fs = require('fs')
-const jsdom = require('mocha-jsdom')
-const path = require('path')
-const babel = require("@babel/core");
-const url = "http://localhost"
+const names = ["Guadalupe", "Ollie", "Aki"];
+const event = ["surprise"];
 
-const html = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf-8')
+function writeCards(name , event) {
+    let messages = []
+    for (let i = 0; i < name.length; i++) {
+        messages.push (`Thank you, ${name[i]}, for the wonderful ${event} gift!`)
+    }
+    return messages
+}
 
-const babelResult = babel.transformFileSync(
-  path.resolve(__dirname, '..', 'index.js'), {
-    presets: ['@babel/env']
-  }
-);
 
-const src = babelResult.code
 
-jsdom({
-  html, src, url
-});
+writeCards(names,"surprise")
+
+const countDown = function(n){
+    let i = n;
+    while(i >=0){
+        console.log(i)
+        i--
+    }
+}
